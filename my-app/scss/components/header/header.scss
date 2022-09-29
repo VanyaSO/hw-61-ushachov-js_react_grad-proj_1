@@ -1,0 +1,43 @@
+//Header
+.css-78trlr-MuiButtonBase-root-MuiIconButton-root:hover {
+  background-color: white !important;
+}
+
+.header{
+  padding: 30px;
+  background: silver;
+  &-content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .header-logo{
+      h3{
+        font-weight: 800;
+        font-size: 32px;
+      }
+    }
+
+    .header-nav{
+      ul{
+        margin: 0;
+        padding: 0;
+        display: flex;
+        li{
+          list-style-type: none;
+          padding: 7px 10px;
+          border-radius: 8px;
+          &:hover{
+            background: white;
+            transition: .5s;
+          }
+          a{
+            text-decoration: none;
+            color: black;
+          }
+        }
+      }
+    }
+  }
+
+}
