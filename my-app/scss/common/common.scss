@@ -1,6 +1,6 @@
 *{
   color:black;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   text-decoration: none;
 }
  html, body{
@@ -9,6 +9,13 @@
 .container{
   max-width: $content-width;
   margin: 0 auto;
+}
+
+@media (min-width: 600px){
+ .css-hyum1k-MuiToolbar-root {
+   padding-left: 0 !important;
+   padding-right: 0 !important;
+ }
 }
 
 @media (max-width: $content-width) {

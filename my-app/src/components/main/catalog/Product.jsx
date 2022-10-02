@@ -1,21 +1,19 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 class MediaCard extends React.Component{
 
     render() {
-        const { props } = this.props;
+        const { props } = this.props
 
         return(
-            <Card sx={{ maxWidth: 345 }}>
+            <Card className={props.isInStock ? 'card-product' : 'card-product no-Stock'} sx={{ maxWidth: 360 }}>
                 <CardMedia
                     component="img"
-                    height="140"
+                    height="240"
                     image={props.photo}
                     alt="green iguana"
                 />
@@ -26,11 +24,17 @@ class MediaCard extends React.Component{
                     <Typography variant="body2" color="text.secondary">
                         {props.description}
                     </Typography>
+                    <p className="product-price">
+                        ${props.price}
+                    </p>
+                    {props.isNew && (
+                        <p className="product-new">New</p>
+                    )}
+
+                    {!props.isInStock && (
+                        <p className="product-noStock">Не в наличии</p>
+                    )}
                 </CardContent>
-                <CardActions>
-                    <Button size="small">Share</Button>
-                    <Button size="small">Learn More</Button>
-                </CardActions>
             </Card>
         )
     }
