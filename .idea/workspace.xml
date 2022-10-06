@@ -2,16 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="585d79d4-d50f-4eb1-a311-6999fb435391" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/my-app/src/components/main/catalog/Filters/Filters.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/scss/common/extend.scss" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/scss/common/extend.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/scss/common/mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/scss/common/mixins.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/scss/components/catalog/catalog.scss" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/scss/components/catalog/catalog.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/scss/components/header/header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/scss/components/header/header.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/main/catalog/Catalog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/main/catalog/Catalog.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/main/catalog/Filters.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/main/catalog/Product.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/main/catalog/ProductCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/main/catalog/Search.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/main/catalog/Filters/Search.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/index.css.map" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -24,15 +39,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/my-app/src/components/main/catalog/Filters" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -42,6 +62,12 @@
       <option name="presentableId" value="Default" />
       <updated>1664479235984</updated>
       <workItem from="1664479238654" duration="152000" />
+      <workItem from="1664479435327" duration="785000" />
+      <workItem from="1664480232418" duration="119000" />
+      <workItem from="1664515388682" duration="30255000" />
+      <workItem from="1664784757058" duration="9298000" />
+      <workItem from="1664954821697" duration="12194000" />
+      <workItem from="1665050192023" duration="4191000" />
     </task>
     <servers />
   </component>

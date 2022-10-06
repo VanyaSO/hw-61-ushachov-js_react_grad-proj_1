@@ -1,10 +1,9 @@
 import React from "react";
-import Item from "./Product";
+import Item from "./ProductCard";
 import { queryState } from "./query-state";
 import { fetchFilters } from "./Api"
-import SearchApp from "./Search";
-import Checkbox from '@mui/material/Checkbox';
-import Filters from "./Filters"
+import SearchApp from "./Filters/Search";
+import Filters from "./Filters/Filters"
 
 class Catalog extends React.Component{
 
@@ -17,10 +16,13 @@ class Catalog extends React.Component{
             productsQueryError: null,
 
             titleSearchValue: '',
-            priceFilterMin: 0,
-            priceFilterMax: 0,
+            priceFilterMin: '',
+            priceFilterMax: 99999,
+            ratingFilterMin: '',
+            ratingFilterMax: 100,
             isNewFilter: false,
             isInStockFilter: false,
+            isSaleFilter: false,
         }
     }
 
@@ -34,6 +36,18 @@ class Catalog extends React.Component{
 
     handleChangeIsInStockFilter = (isInStockFilter) => {
         this.setState({isInStockFilter} )
+    }
+
+    handleChangeIsSaleFilter = (isSaleFilter) => {
+        this.setState({isSaleFilter} )
+    }
+
+    handlePriceFilter = (priceFilterMin, priceFilterMax) => {
+        this.setState({priceFilterMin, priceFilterMax})
+    }
+
+    handleRatingFilter = (ratingFilterMin, ratingFilterMax) => {
+        this.setState({ratingFilterMin, ratingFilterMax})
     }
 
     componentDidMount(){
@@ -65,7 +79,12 @@ class Catalog extends React.Component{
             products,
             titleSearchValue,
             isNewFilter,
-            isInStockFilter
+            isInStockFilter,
+            isSaleFilter,
+            priceFilterMin,
+            priceFilterMax,
+            ratingFilterMin,
+            ratingFilterMax
         } = this.state
 
         return products.filter((product) => {
@@ -84,6 +103,20 @@ class Catalog extends React.Component{
                 isPass = isPass && product.isInStock;
             }
 
+            if(isSaleFilter) {
+                isPass = isPass && product.isSale;
+            }
+
+            const price = parseFloat(product.price)
+            isPass = isPass && (
+                price >= priceFilterMin && price <= priceFilterMax
+            )
+
+            const rating = parseFloat(product.rating)
+            isPass = isPass && (
+                rating >= ratingFilterMin && rating <= ratingFilterMax
+            )
+
             return isPass;
 
         })
@@ -94,10 +127,16 @@ class Catalog extends React.Component{
     render() {
 
         const {
+            products, productsQueryStatus, productsQueryError,
             titleSearchValue,
-            isNewFilter,
-            isInStockFilter
+            isNewFilter, isInStockFilter, isSaleFilter,
+            priceFilterMin, priceFilterMax,
+            ratingFilterMin, ratingFilterMax
         } = this.state
+
+        const isLoading = productsQueryStatus === queryState.loading || productsQueryStatus === queryState.initial
+        const isSuccess = productsQueryStatus === queryState.success
+        const isError = productsQueryStatus === queryState.error
 
         const filterProducts = this.getFilteredProducts();
 
@@ -113,19 +152,41 @@ class Catalog extends React.Component{
                             handleChangeSearchFilter = {this.handleChangeSearchFilter}
                         />
 
-                        <Filters
-                            isNewFilter = {isNewFilter}
-                            isInStockFilter = {isInStockFilter}
-                            handleChangeIsNewFilter = {this.handleChangeIsNewFilter}
-                            handleChangeIsInStockFilter = {this.handleChangeIsInStockFilter}
-                        />
+                        <div className="catalog-filters-product">
+                            <Filters
+                                filterProductsLeng={filterProducts.length}
+                                productsLeng={products.length}
+                                isNewFilter = {isNewFilter}
+                                isInStockFilter = {isInStockFilter}
+                                isSaleFilter = {isSaleFilter}
+                                priceFilterMin = {priceFilterMin}
+                                priceFilterMax = {priceFilterMax}
+                                ratingFilterMin = {ratingFilterMin}
+                                ratingFilterMax = {ratingFilterMax}
+                                handleChangeIsNewFilter = {this.handleChangeIsNewFilter}
+                                handleChangeIsInStockFilter = {this.handleChangeIsInStockFilter}
+                                handleChangeIsSaleFilter = {this.handleChangeIsSaleFilter}
+                                handlePriceFilter = {this.handlePriceFilter}
+                                handleRatingFilter = {this.handleRatingFilter}
+                            />
 
+                            {isLoading && (
+                                <div>Loading....</div>
+                            )}
 
+                            {!isLoading && isSuccess && (
+                                <div className="catalog-products">
+                                    {filterProducts.map((product) => (
+                                        <Item key={product.id} props={product} />
+                                    ))}
+                                </div>
+                            )}
 
-                        <div className="catalog-products">
-                            {filterProducts.map((product) => (
-                                <Item key={product.id} props={product} />
-                            ))}
+                            {!isLoading && isError && (
+                                <div style={{ color: 'red' }}>
+                                    {productsQueryError?.message || 'Something went wrong'}
+                                </div>
+                            )}
                         </div>
 
                     </div>
