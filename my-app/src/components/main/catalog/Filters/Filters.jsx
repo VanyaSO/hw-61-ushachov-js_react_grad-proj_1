@@ -8,6 +8,7 @@ class Filters extends React.Component{
     render() {
         const {
             filterProductsLeng,productsLeng,
+            categories,
             isNewFilter, handleChangeIsNewFilter,
             isInStockFilter, handleChangeIsInStockFilter,
             isSaleFilter, handleChangeIsSaleFilter,
@@ -57,25 +58,32 @@ class Filters extends React.Component{
             <div className="catalog-filters">
                 <div>
                     <h4 className='filters-title'>{`${filterProductsLeng}/${productsLeng}`}</h4>
+                    <h3 className='filters-title'>Categories</h3>
+                    <div className="filters-category">
+                        {categories.map((category) =>(
+                            <div key={category.id}>{category.name}</div>
+                        ))}
+                    </div>
+
                     <h3 className='filters-title'>Filters</h3>
                     <div className="filter-price">
-                    <span>Price from
-                        <input
-                            onChange={onChangePriceMin}
-                            placeholder="from"
-                            value={priceFilterMin}
-                            min={0}
-                            max={priceFilterMax - 1}
-                        />
-                    </span>
+                        <span>Price from
+                            <input
+                                onChange={onChangePriceMin}
+                                placeholder="from"
+                                value={priceFilterMin}
+                                min={0}
+                                max={priceFilterMax - 1}
+                            />
+                        </span>
                         <span>to
-                        <input
-                            onChange={onChangePriceMax}
-                            placeholder="to"
-                            value={priceFilterMax}
-                            min={priceFilterMin + 1}
-                        />
-                    </span>
+                            <input
+                                onChange={onChangePriceMax}
+                                placeholder="to"
+                                value={priceFilterMax}
+                                min={priceFilterMin + 1}
+                            />
+                        </span>
                     </div>
 
                     <label className="filter-IsNew" htmlFor="isNew">

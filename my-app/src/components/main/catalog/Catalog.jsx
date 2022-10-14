@@ -1,7 +1,7 @@
 import React from "react";
 import Item from "./ProductCard";
 import { queryState } from "./query-state";
-import { fetchFilters } from "./Api"
+import { fetchFilters, fetchCategories } from "./api"
 import SearchApp from "./Filters/Search";
 import Filters from "./Filters/Filters"
 
@@ -15,6 +15,7 @@ class Catalog extends React.Component{
             productsQueryStatus: queryState.initial,
             productsQueryError: null,
 
+            categories: [],
             titleSearchValue: '',
             priceFilterMin: '',
             priceFilterMax: 99999,
@@ -52,6 +53,7 @@ class Catalog extends React.Component{
 
     componentDidMount(){
         this.loadProducts();
+        this.loadCategories();
     }
 
     loadProducts(){
@@ -72,6 +74,14 @@ class Catalog extends React.Component{
             })
         })
 
+    }
+
+    loadCategories(){
+        fetchCategories().then((categoriesList) => {
+            this.setState({
+                categories: categoriesList
+            })
+        })
     }
 
     getFilteredProducts() {
@@ -128,6 +138,7 @@ class Catalog extends React.Component{
 
         const {
             products, productsQueryStatus, productsQueryError,
+            categories,
             titleSearchValue,
             isNewFilter, isInStockFilter, isSaleFilter,
             priceFilterMin, priceFilterMax,
@@ -156,6 +167,7 @@ class Catalog extends React.Component{
                             <Filters
                                 filterProductsLeng={filterProducts.length}
                                 productsLeng={products.length}
+                                categories = {categories}
                                 isNewFilter = {isNewFilter}
                                 isInStockFilter = {isInStockFilter}
                                 isSaleFilter = {isSaleFilter}
