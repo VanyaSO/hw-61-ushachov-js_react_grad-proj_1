@@ -15,6 +15,7 @@ class Catalog extends React.Component{
             productsQueryStatus: queryState.initial,
             productsQueryError: null,
 
+            selectCategory:'',
             categories: [],
             titleSearchValue: '',
             priceFilterMin: '',
@@ -25,6 +26,10 @@ class Catalog extends React.Component{
             isInStockFilter: false,
             isSaleFilter: false,
         }
+    }
+
+    handleChangeFilterCategories = (selectCategory) => {
+        this.setState({selectCategory})
     }
 
     handleChangeSearchFilter = (titleSearchValue) => {
@@ -84,9 +89,25 @@ class Catalog extends React.Component{
         })
     }
 
+
+    handleFilterReset = () => {
+        this.setState({
+            selectCategory:'',
+            titleSearchValue: '',
+            priceFilterMin: '',
+            priceFilterMax: 99999,
+            ratingFilterMin: '',
+            ratingFilterMax: 100,
+            isNewFilter: false,
+            isInStockFilter: false,
+            isSaleFilter: false,
+        })
+    }
+
     getFilteredProducts() {
         const {
             products,
+            selectCategory,
             titleSearchValue,
             isNewFilter,
             isInStockFilter,
@@ -103,6 +124,10 @@ class Catalog extends React.Component{
             if(titleSearchValue.trim() !== ''){
                 const isSearch = product.title.toLocaleLowerCase().includes(titleSearchValue.toLocaleLowerCase())
                 isPass = isPass && isSearch
+            }
+
+            if(selectCategory){
+                isPass = isPass && product.categories.includes(selectCategory);
             }
 
             if(isNewFilter) {
@@ -138,11 +163,11 @@ class Catalog extends React.Component{
 
         const {
             products, productsQueryStatus, productsQueryError,
-            categories,
+            selectCategory, categories,
             titleSearchValue,
             isNewFilter, isInStockFilter, isSaleFilter,
             priceFilterMin, priceFilterMax,
-            ratingFilterMin, ratingFilterMax
+            ratingFilterMin, ratingFilterMax,
         } = this.state
 
         const isLoading = productsQueryStatus === queryState.loading || productsQueryStatus === queryState.initial
@@ -167,6 +192,7 @@ class Catalog extends React.Component{
                             <Filters
                                 filterProductsLeng={filterProducts.length}
                                 productsLeng={products.length}
+                                selectCategory = {selectCategory}
                                 categories = {categories}
                                 isNewFilter = {isNewFilter}
                                 isInStockFilter = {isInStockFilter}
@@ -175,11 +201,13 @@ class Catalog extends React.Component{
                                 priceFilterMax = {priceFilterMax}
                                 ratingFilterMin = {ratingFilterMin}
                                 ratingFilterMax = {ratingFilterMax}
+                                handleChangeFilterCategory = {this.handleChangeFilterCategories}
                                 handleChangeIsNewFilter = {this.handleChangeIsNewFilter}
                                 handleChangeIsInStockFilter = {this.handleChangeIsInStockFilter}
                                 handleChangeIsSaleFilter = {this.handleChangeIsSaleFilter}
                                 handlePriceFilter = {this.handlePriceFilter}
                                 handleRatingFilter = {this.handleRatingFilter}
+                                handleFilterReset = {this.handleFilterReset}
                             />
 
                             {isLoading && (

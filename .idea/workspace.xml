@@ -2,19 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="585d79d4-d50f-4eb1-a311-6999fb435391" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/my-app/src/components/main/catalog/Filters/Filters.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/scss/common/extend.scss" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/scss/common/extend.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/scss/common/mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/scss/common/mixins.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/scss/components/catalog/catalog.scss" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/scss/components/catalog/catalog.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/scss/components/header/header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/scss/components/header/header.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/src/components/main/catalog/Catalog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/main/catalog/Catalog.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/components/main/catalog/Filters.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/components/main/catalog/Product.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/main/catalog/ProductCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/components/main/catalog/Search.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/main/catalog/Filters/Search.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/main/catalog/Filters/Filters.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/main/catalog/Filters/Filters.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/main/catalog/ProductCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/main/catalog/ProductCard.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/src/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/index.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/scss/common/extend.scss" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/scss/common/extend.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/scss/components/catalog/catalog.scss" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/scss/components/catalog/catalog.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +62,9 @@
       <workItem from="1664515388682" duration="30255000" />
       <workItem from="1664784757058" duration="9298000" />
       <workItem from="1664954821697" duration="12194000" />
-      <workItem from="1665050192023" duration="4191000" />
+      <workItem from="1665050192023" duration="4881000" />
+      <workItem from="1665333615912" duration="1069000" />
+      <workItem from="1665735214018" duration="8712000" />
     </task>
     <servers />
   </component>

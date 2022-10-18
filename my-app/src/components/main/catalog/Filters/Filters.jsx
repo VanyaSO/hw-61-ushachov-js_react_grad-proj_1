@@ -8,13 +8,19 @@ class Filters extends React.Component{
     render() {
         const {
             filterProductsLeng,productsLeng,
-            categories,
+            selectCategory, categories,
+            handleChangeFilterCategory,
             isNewFilter, handleChangeIsNewFilter,
             isInStockFilter, handleChangeIsInStockFilter,
             isSaleFilter, handleChangeIsSaleFilter,
             priceFilterMin, priceFilterMax, handlePriceFilter,
             ratingFilterMin, ratingFilterMax, handleRatingFilter,
+            handleFilterReset
         } = this.props
+
+        const filterCategoriesHandle = ( {target} ) => {
+            handleChangeFilterCategory(target.id);
+        }
 
         const onChangeIsNew = () =>{
             handleChangeIsNewFilter(!isNewFilter)
@@ -54,17 +60,14 @@ class Filters extends React.Component{
             handleRatingFilter(ratingFilterMin, value)
         }
 
+        const filterResetHandle = () =>{
+            handleFilterReset();
+        }
+
         return(
             <div className="catalog-filters">
                 <div>
                     <h4 className='filters-title'>{`${filterProductsLeng}/${productsLeng}`}</h4>
-                    <h3 className='filters-title'>Categories</h3>
-                    <div className="filters-category">
-                        {categories.map((category) =>(
-                            <div key={category.id}>{category.name}</div>
-                        ))}
-                    </div>
-
                     <h3 className='filters-title'>Filters</h3>
                     <div className="filter-price">
                         <span>Price from
@@ -124,6 +127,19 @@ class Filters extends React.Component{
                                min={ratingFilterMin + 1}
                         />
                     </span>
+                    </div>
+
+                    <h3 className='filters-title'>Categories</h3>
+                    <div className="filters-category">
+                        <div onClick={filterCategoriesHandle} className={'' === selectCategory ? 'category categoryActive' : 'category'} >All</div>
+
+                        {categories.map((category) =>(
+                            <div onClick={filterCategoriesHandle} id={category.id} key={category.id} className={category.id === selectCategory ? 'category categoryActive' : 'category '}>{category.name}</div>
+                        ))}
+                    </div>
+
+                    <div className="filter-reset" onClick={filterResetHandle}>
+                        RESET
                     </div>
                 </div>
 

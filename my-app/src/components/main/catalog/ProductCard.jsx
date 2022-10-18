@@ -37,9 +37,8 @@ class MediaCard extends React.Component{
 
                     <p className="product-price">${props.price}</p>
 
-                    <p className="product-categories">{`Категории: [${props.categories}]`}</p>
-
                     <p className="product-rating">{`Рейтинг : ${props.rating}`}</p>
+
 
                     {!props.isInStock && (
                         <p className="product-noStock">Не в наличии</p>
