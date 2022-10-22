@@ -1,123 +1,89 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Item from "./ProductCard";
 import { queryState } from "./query-state";
-import { fetchFilters, fetchCategories } from "./api"
+import { fetchProducts, fetchCategories } from "./api"
 import SearchApp from "./Filters/Search";
 import Filters from "./Filters/Filters"
+import CircularIndeterminate from "./Loading";
 
-class Catalog extends React.Component{
+const Catalog = () => {
+    const [products, setProducts] = useState([])
+    const [productsQueryStatus, setProductsQueryStatus] = useState([])
+    const [productsQueryError, setProductsQueryError] = useState(queryState.initial)
 
-    constructor(props) {
-        super(props);
+    const [titleSearchValue, setTitleSearchValue] = useState('');
+    const [selectCategory, setSelectCategory] = useState('');
+    const [categories, setCategories] = useState([]);
+    const [priceFilterMin, setPriceFilterMin] = useState('');
+    const [priceFilterMax, setPriceFilterMax] = useState(99999);
+    const [ratingFilterMin, setRatingFilterMin] = useState('');
+    const [ratingFilterMax, setRatingFilterMax] = useState(100);
+    const [isNewFilter, setIsNewFilter] = useState(false);
+    const [isInStockFilter, setIsInStockFilter] = useState(false);
+    const [isSaleFilter, setIsSaleFilter] = useState(false);
 
-        this.state = {
-            products: [],
-            productsQueryStatus: queryState.initial,
-            productsQueryError: null,
+    useEffect(() => {
+        setProductsQueryStatus(queryState.loading);
 
-            selectCategory:'',
-            categories: [],
-            titleSearchValue: '',
-            priceFilterMin: '',
-            priceFilterMax: 99999,
-            ratingFilterMin: '',
-            ratingFilterMax: 100,
-            isNewFilter: false,
-            isInStockFilter: false,
-            isSaleFilter: false,
-        }
-    }
-
-    handleChangeFilterCategories = (selectCategory) => {
-        this.setState({selectCategory})
-    }
-
-    handleChangeSearchFilter = (titleSearchValue) => {
-        this.setState({titleSearchValue} )
-    }
-
-    handleChangeIsNewFilter = (isNewFilter) => {
-        this.setState({isNewFilter} )
-    }
-
-    handleChangeIsInStockFilter = (isInStockFilter) => {
-        this.setState({isInStockFilter} )
-    }
-
-    handleChangeIsSaleFilter = (isSaleFilter) => {
-        this.setState({isSaleFilter} )
-    }
-
-    handlePriceFilter = (priceFilterMin, priceFilterMax) => {
-        this.setState({priceFilterMin, priceFilterMax})
-    }
-
-    handleRatingFilter = (ratingFilterMin, ratingFilterMax) => {
-        this.setState({ratingFilterMin, ratingFilterMax})
-    }
-
-    componentDidMount(){
-        this.loadProducts();
-        this.loadCategories();
-    }
-
-    loadProducts(){
-        this.setState({
-            productsQueryStatus: queryState.loading
+        fetchProducts()
+            .then((productsList) => {
+                setProducts(productsList)
+                setProductsQueryStatus(queryState.success);
+                setProductsQueryError(null);
+            }).catch((error) => {
+            setProductsQueryStatus(queryState.error);
+            setProductsQueryError(error);
         })
 
-        fetchFilters().then((productsList) => {
-            this.setState({
-                products: productsList,
-                productsQueryStatus: queryState.success,
-                productsQueryError: null,
+        fetchCategories()
+            .then((categoriesList) => {
+                setCategories(categoriesList)
             })
-        }).catch((error) => {
-            this.setState({
-                productsQueryStatus: queryState.error,
-                productsQueryError: error,
-            })
-        })
+    }, []);
 
+    const handleChangeSearchFilter = (titleSearchValue) => {
+        setTitleSearchValue(titleSearchValue)
     }
 
-    loadCategories(){
-        fetchCategories().then((categoriesList) => {
-            this.setState({
-                categories: categoriesList
-            })
-        })
+    const handleChangeFilterCategories = (selectCategory) => {
+        setSelectCategory(selectCategory);
     }
 
-
-    handleFilterReset = () => {
-        this.setState({
-            selectCategory:'',
-            titleSearchValue: '',
-            priceFilterMin: '',
-            priceFilterMax: 99999,
-            ratingFilterMin: '',
-            ratingFilterMax: 100,
-            isNewFilter: false,
-            isInStockFilter: false,
-            isSaleFilter: false,
-        })
+    const handlePriceFilter = (priceFilterMin, priceFilterMax) => {
+        setPriceFilterMin(priceFilterMin);
+        setPriceFilterMax(priceFilterMax);
     }
 
-    getFilteredProducts() {
-        const {
-            products,
-            selectCategory,
-            titleSearchValue,
-            isNewFilter,
-            isInStockFilter,
-            isSaleFilter,
-            priceFilterMin,
-            priceFilterMax,
-            ratingFilterMin,
-            ratingFilterMax
-        } = this.state
+    const handleRatingFilter = (ratingFilterMin, ratingFilterMax) => {
+        setRatingFilterMin(ratingFilterMin);
+        setRatingFilterMax(ratingFilterMax);
+    }
 
+    const handleChangeIsNewFilter = (isNewFilter) => {
+        setIsNewFilter(isNewFilter)
+    }
+
+    const handleChangeIsInStockFilter = (isInStockFilter) => {
+        setIsInStockFilter(isInStockFilter)
+    }
+
+    const handleChangeIsSaleFilter = (isSaleFilter) => {
+        setIsSaleFilter(isSaleFilter);
+    }
+
+    const handleFilterReset = () => {
+        setTitleSearchValue('');
+        setSelectCategory('');
+        setPriceFilterMin('')
+        setPriceFilterMax(99999);
+        setRatingFilterMin('');
+        setRatingFilterMax(100);
+        setIsNewFilter(false);
+        setIsInStockFilter(false);
+        setIsSaleFilter(false);
+    }
+
+    const getFilteredProducts = () => {
         return products.filter((product) => {
             let isPass = true;
 
@@ -157,85 +123,72 @@ class Catalog extends React.Component{
         })
     }
 
+    const filterProducts = getFilteredProducts();
+
+    const isLoading = productsQueryStatus === queryState.loading || productsQueryStatus === queryState.initial
+    const isSuccess = productsQueryStatus === queryState.success
+    const isError = productsQueryStatus === queryState.error
 
 
-    render() {
+    return (
+        <div className="catalog">
+            <div className="container">
+                <div className="catalog-content">
 
-        const {
-            products, productsQueryStatus, productsQueryError,
-            selectCategory, categories,
-            titleSearchValue,
-            isNewFilter, isInStockFilter, isSaleFilter,
-            priceFilterMin, priceFilterMax,
-            ratingFilterMin, ratingFilterMax,
-        } = this.state
+                    <h3 className="catalog-title">Catalog</h3>
 
-        const isLoading = productsQueryStatus === queryState.loading || productsQueryStatus === queryState.initial
-        const isSuccess = productsQueryStatus === queryState.success
-        const isError = productsQueryStatus === queryState.error
+                    <SearchApp
+                        titleSearchValue = {titleSearchValue}
+                        handleChangeSearchFilter = {handleChangeSearchFilter}
+                    />
 
-        const filterProducts = this.getFilteredProducts();
+                    <div className="catalog-filters-product">
+                        <Filters
+                            filterProductsLeng={filterProducts.length}
+                            productsLeng={products.length}
+                            selectCategory = {selectCategory}
+                            categories = {categories}
+                            isNewFilter = {isNewFilter}
+                            isInStockFilter = {isInStockFilter}
+                            isSaleFilter = {isSaleFilter}
+                            priceFilterMin = {priceFilterMin}
+                            priceFilterMax = {priceFilterMax}
+                            ratingFilterMin = {ratingFilterMin}
+                            ratingFilterMax = {ratingFilterMax}
 
-        return (
-            <div className="catalog">
-                <div className="container">
-                    <div className="catalog-content">
-
-                        <h3 className="catalog-title">Catalog</h3>
-
-                        <SearchApp
-                            titleSearchValue = {titleSearchValue}
-                            handleChangeSearchFilter = {this.handleChangeSearchFilter}
+                            handleChangeFilterCategory = {handleChangeFilterCategories}
+                            handleChangeIsNewFilter = {handleChangeIsNewFilter}
+                            handleChangeIsInStockFilter = {handleChangeIsInStockFilter}
+                            handleChangeIsSaleFilter = {handleChangeIsSaleFilter}
+                            handlePriceFilter = {handlePriceFilter}
+                            handleRatingFilter = {handleRatingFilter}
+                            handleFilterReset = {handleFilterReset}
                         />
 
-                        <div className="catalog-filters-product">
-                            <Filters
-                                filterProductsLeng={filterProducts.length}
-                                productsLeng={products.length}
-                                selectCategory = {selectCategory}
-                                categories = {categories}
-                                isNewFilter = {isNewFilter}
-                                isInStockFilter = {isInStockFilter}
-                                isSaleFilter = {isSaleFilter}
-                                priceFilterMin = {priceFilterMin}
-                                priceFilterMax = {priceFilterMax}
-                                ratingFilterMin = {ratingFilterMin}
-                                ratingFilterMax = {ratingFilterMax}
-                                handleChangeFilterCategory = {this.handleChangeFilterCategories}
-                                handleChangeIsNewFilter = {this.handleChangeIsNewFilter}
-                                handleChangeIsInStockFilter = {this.handleChangeIsInStockFilter}
-                                handleChangeIsSaleFilter = {this.handleChangeIsSaleFilter}
-                                handlePriceFilter = {this.handlePriceFilter}
-                                handleRatingFilter = {this.handleRatingFilter}
-                                handleFilterReset = {this.handleFilterReset}
-                            />
+                        {isLoading && (
+                            <CircularIndeterminate/>
+                        )}
 
-                            {isLoading && (
-                                <div>Loading....</div>
-                            )}
+                        {!isLoading && isSuccess && (
+                            <div className="catalog-products">
+                                {filterProducts.map((product) => (
+                                    <Item key={product.id} product={product} />
+                                ))}
+                            </div>
+                        )}
 
-                            {!isLoading && isSuccess && (
-                                <div className="catalog-products">
-                                    {filterProducts.map((product) => (
-                                        <Item key={product.id} props={product} />
-                                    ))}
-                                </div>
-                            )}
-
-                            {!isLoading && isError && (
-                                <div style={{ color: 'red' }}>
-                                    {productsQueryError?.message || 'Something went wrong'}
-                                </div>
-                            )}
-                        </div>
-
+                        {!isLoading && isError && (
+                            <div style={{ color: 'red' }}>
+                                {productsQueryError?.message || 'Something went wrong'}
+                            </div>
+                        )}
                     </div>
+
                 </div>
             </div>
-        );
-    }
-
-
+        </div>
+    )
 }
+
 
 export default Catalog;

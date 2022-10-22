@@ -1,16 +1,11 @@
 import React from "react";
 
-class Banner extends React.Component{
-
-    render() {
-        return (
-            <div className="banner">
-                <img src={this.props.src} alt=""/>
-            </div>
-        );
-    }
-
-
+const Banner = (props) => {
+    return (
+        <div className="banner">
+            <img src={props.src} alt=""/>
+        </div>
+    );
 }
 
 export default Banner;

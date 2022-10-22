@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="585d79d4-d50f-4eb1-a311-6999fb435391" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/my-app/src/components/main/catalog/Loading.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/header/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/main/Banner.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/main/Banner.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/src/components/main/catalog/Catalog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/main/catalog/Catalog.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/src/components/main/catalog/Filters/Filters.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/main/catalog/Filters/Filters.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/src/components/main/catalog/ProductCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/main/catalog/ProductCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/index.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/index.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/scss/common/extend.scss" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/scss/common/extend.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/scss/components/catalog/catalog.scss" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/scss/components/catalog/catalog.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/main/catalog/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/main/catalog/api.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,15 +35,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/my-app/src/components/main/catalog/Filters" />
@@ -64,7 +66,8 @@
       <workItem from="1664954821697" duration="12194000" />
       <workItem from="1665050192023" duration="4881000" />
       <workItem from="1665333615912" duration="1069000" />
-      <workItem from="1665735214018" duration="8712000" />
+      <workItem from="1665735214018" duration="9993000" />
+      <workItem from="1666288975500" duration="9761000" />
     </task>
     <servers />
   </component>
