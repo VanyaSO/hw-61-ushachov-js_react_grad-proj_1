@@ -1,7 +1,7 @@
-import React from "react";
+import React, {memo} from "react";
 import ShoppingCartIcon from "./Basket"
 
-const Header = () => {
+const Header = memo(() => {
 
     return (
         <div className="container">
@@ -30,7 +30,7 @@ const Header = () => {
             </div>
         </div>
     );
-}
+})
 
 export default Header;
 

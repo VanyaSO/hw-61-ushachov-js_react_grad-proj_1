@@ -1,4 +1,6 @@
 import * as React from 'react';
+import {memo} from "react";
+import PropTypes from "prop-types";
 import { styled, alpha } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import InputBase from '@mui/material/InputBase';
@@ -47,12 +49,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-export default function SearchApp(props) {
+const SearchApp = memo((props) => {
 
-    const {
-        titleSearchValue,
-        handleChangeSearchFilter,
-    } = props
+    const {titleSearchValue, handleChangeSearchFilter,} = props
 
     const onChangeTitle = (event) =>{
         handleChangeSearchFilter(event.target.value);
@@ -73,4 +72,11 @@ export default function SearchApp(props) {
             </Search>
         </Toolbar>
     );
+})
+
+SearchApp.prototype = {
+    titleSearchValue: PropTypes.string,
+    handleChangeSearchFilter: PropTypes.func,
 }
+
+export default SearchApp;

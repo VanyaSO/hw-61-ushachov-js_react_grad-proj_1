@@ -1,10 +1,12 @@
 import * as React from 'react';
+import {memo} from "react";
+import PropTypes from "prop-types";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-const MediaCard = ({product}) => {
+const MediaCard = memo(({product}) => {
     const { isInStock, isNew, isSale, photo, id, title, description, price, rating} = product;
 
     return(
@@ -45,6 +47,21 @@ const MediaCard = ({product}) => {
             </CardContent>
         </Card>
     )
+})
+
+MediaCard.propTypes = {
+    product: PropTypes.shape({
+        isInStock: PropTypes.bool,
+        isNew: PropTypes.bool,
+        isSale: PropTypes.bool,
+        photo: PropTypes.string,
+        id: PropTypes.string,
+        title: PropTypes.string,
+        description: PropTypes.string,
+        price: PropTypes.string,
+        rating: PropTypes.number,
+    })
+
 }
 
 export default MediaCard;

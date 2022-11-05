@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {memo} from "react";
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
@@ -13,7 +14,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     },
 }));
 
-export default function CustomizedBadges() {
+const CustomizedBadges = memo(() => {
     return (
         <IconButton aria-label="cart">
             <StyledBadge badgeContent={1} color="secondary">
@@ -21,4 +22,6 @@ export default function CustomizedBadges() {
             </StyledBadge>
         </IconButton>
     );
-}
+})
+
+export default CustomizedBadges;

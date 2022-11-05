@@ -1,11 +1,17 @@
-import React from "react";
+import React, {memo} from "react";
+import PropTypes from "prop-types";
 
-const Banner = (props) => {
+const Banner = memo((props) => {
+    const {src} = props
     return (
         <div className="banner">
-            <img src={props.src} alt=""/>
+            <img src={src} alt=""/>
         </div>
     );
+})
+
+Banner.prototype = {
+    src: PropTypes.string
 }
 
 export default Banner;

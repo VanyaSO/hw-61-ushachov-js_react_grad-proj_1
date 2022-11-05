@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useCallback, useMemo, memo} from "react";
 import Item from "./ProductCard";
 import { queryState } from "./query-state";
 import { fetchProducts, fetchCategories } from "./api"
@@ -6,7 +6,7 @@ import SearchApp from "./Filters/Search";
 import Filters from "./Filters/Filters"
 import CircularIndeterminate from "./Loading";
 
-const Catalog = () => {
+const Catalog = memo(() => {
     const [products, setProducts] = useState([])
     const [productsQueryStatus, setProductsQueryStatus] = useState([])
     const [productsQueryError, setProductsQueryError] = useState(queryState.initial)
@@ -41,37 +41,37 @@ const Catalog = () => {
             })
     }, []);
 
-    const handleChangeSearchFilter = (titleSearchValue) => {
+    const handleChangeSearchFilter = useCallback((titleSearchValue) => {
         setTitleSearchValue(titleSearchValue)
-    }
+    },[])
 
-    const handleChangeFilterCategories = (selectCategory) => {
+    const handleChangeFilterCategories = useCallback((selectCategory) => {
         setSelectCategory(selectCategory);
-    }
+    },[])
 
-    const handlePriceFilter = (priceFilterMin, priceFilterMax) => {
+    const handlePriceFilter = useCallback((priceFilterMin, priceFilterMax) => {
         setPriceFilterMin(priceFilterMin);
         setPriceFilterMax(priceFilterMax);
-    }
+    },[])
 
-    const handleRatingFilter = (ratingFilterMin, ratingFilterMax) => {
+    const handleRatingFilter = useCallback((ratingFilterMin, ratingFilterMax) => {
         setRatingFilterMin(ratingFilterMin);
         setRatingFilterMax(ratingFilterMax);
-    }
+    },[])
 
-    const handleChangeIsNewFilter = (isNewFilter) => {
+    const handleChangeIsNewFilter = useCallback((isNewFilter) => {
         setIsNewFilter(isNewFilter)
-    }
+    },[])
 
-    const handleChangeIsInStockFilter = (isInStockFilter) => {
+    const handleChangeIsInStockFilter = useCallback((isInStockFilter) => {
         setIsInStockFilter(isInStockFilter)
-    }
+    },[])
 
-    const handleChangeIsSaleFilter = (isSaleFilter) => {
+    const handleChangeIsSaleFilter = useCallback((isSaleFilter) => {
         setIsSaleFilter(isSaleFilter);
-    }
+    },[])
 
-    const handleFilterReset = () => {
+    const handleFilterReset = useCallback(() => {
         setTitleSearchValue('');
         setSelectCategory('');
         setPriceFilterMin('')
@@ -81,9 +81,9 @@ const Catalog = () => {
         setIsNewFilter(false);
         setIsInStockFilter(false);
         setIsSaleFilter(false);
-    }
+    }, [])
 
-    const getFilteredProducts = () => {
+    const filterProducts = useMemo(() => {
         return products.filter((product) => {
             let isPass = true;
 
@@ -117,17 +117,13 @@ const Catalog = () => {
             isPass = isPass && (
                 rating >= ratingFilterMin && rating <= ratingFilterMax
             )
-
             return isPass;
-
         })
-    }
+    },[productsQueryStatus, isNewFilter, isInStockFilter, isSaleFilter, titleSearchValue, selectCategory, ratingFilterMin, ratingFilterMax, priceFilterMin, priceFilterMax])
 
-    const filterProducts = getFilteredProducts();
-
-    const isLoading = productsQueryStatus === queryState.loading || productsQueryStatus === queryState.initial
-    const isSuccess = productsQueryStatus === queryState.success
-    const isError = productsQueryStatus === queryState.error
+    const isLoading = useMemo(() => productsQueryStatus === queryState.loading || productsQueryStatus === queryState.initial, [productsQueryStatus])
+    const isSuccess = useMemo(() => productsQueryStatus === queryState.success, [productsQueryStatus])
+    const isError = useMemo(() => productsQueryStatus === queryState.error, [productsQueryError])
 
 
     return (
@@ -188,7 +184,7 @@ const Catalog = () => {
             </div>
         </div>
     )
-}
+})
 
 
 export default Catalog;

@@ -1,61 +1,65 @@
 import * as React from 'react';
+import PropTypes from "prop-types";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
+import {memo, useCallback} from "react";
 
-const Filters = (props) => {
+const Filters = memo((props) => {
 
-    const { filterProductsLeng,productsLeng } = props;
+    const { filterProductsLeng, productsLeng } = props;
     const { selectCategory, categories, handleChangeFilterCategory } = props;
     const { isNewFilter, handleChangeIsNewFilter, isInStockFilter, handleChangeIsInStockFilter, isSaleFilter, handleChangeIsSaleFilter } = props;
     const { priceFilterMin, priceFilterMax, handlePriceFilter } = props;
     const { ratingFilterMin, ratingFilterMax, handleRatingFilter } = props;
     const { handleFilterReset } = props;
 
-    const filterCategoriesHandle = ( {target} ) => {
+    const filterCategoriesHandle = useCallback(( {target} ) => {
         handleChangeFilterCategory(target.id);
-    }
+    },[categories])
 
-    const onChangeIsNew = () =>{
+    const onChangeIsNew = useCallback(() => {
         handleChangeIsNewFilter(!isNewFilter)
-    }
+    },[isNewFilter])
 
-    const onChangeIsInStock = () => {
+    const onChangeIsInStock = useCallback(() => {
         handleChangeIsInStockFilter(!isInStockFilter);
-    }
+    },[isInStockFilter])
 
-    const onChangeIsSale = () =>{
+    const onChangeIsSale = useCallback(() => {
         handleChangeIsSaleFilter(!isSaleFilter)
-    }
+    },[isSaleFilter])
 
-    const onChangePriceMin = ({ target }) => {
+    const onChangePriceMin = useCallback(({ target }) => {
         let value = parseInt(target.value)
         value = Number.isNaN(value) ? 0 : value
 
         handlePriceFilter(value, priceFilterMax)
-    }
+    },[priceFilterMax])
 
-    const onChangePriceMax = ({ target }) => {
+    const onChangePriceMax = useCallback(({ target }) => {
         let value = parseInt(target.value)
         value = Number.isNaN(value) ? 0 : value
 
         handlePriceFilter(priceFilterMin, value)
-    }
+    },[priceFilterMin])
 
-    const onChangeRatingMin = ({ target }) => {
+    const onChangeRatingMin = useCallback(({ target }) => {
         let value = parseInt(target.value)
         value = Number.isNaN(value) ? 0 : value
+
         handleRatingFilter(value, ratingFilterMax)
-    }
+    },[ratingFilterMax])
 
-    const onChangeRatingMax = ({ target }) => {
+    const onChangeRatingMax = useCallback(({ target }) => {
         let value = parseInt(target.value)
         value = Number.isNaN(value) ? 0 : value
-        handleRatingFilter(ratingFilterMin, value)
-    }
 
-    const filterResetHandle = () => {
+        handleRatingFilter(ratingFilterMin, value)
+    },[ratingFilterMin])
+
+    const filterResetHandle = useCallback(() => {
         handleFilterReset();
-    }
+    },[])
 
 
     return(
@@ -139,6 +143,27 @@ const Filters = (props) => {
 
         </div>
     );
+})
+
+Filters.prototype = {
+    filterProductsLeng: PropTypes.string,
+    productsLeng: PropTypes.string,
+    selectCategory: PropTypes.string,
+    categories: PropTypes.array,
+    isNewFilter: PropTypes.bool,
+    isInStockFilter: PropTypes.bool,
+    isSaleFilter: PropTypes.bool,
+    priceFilterMin: PropTypes.number,
+    priceFilterMax: PropTypes.number,
+    ratingFilterMin: PropTypes.number,
+    ratingFilterMax: PropTypes.number,
+    handleChangeFilterCategory: PropTypes.func,
+    handleChangeIsNewFilter: PropTypes.func,
+    handleChangeIsInStockFilter: PropTypes.func,
+    handleChangeIsSaleFilter: PropTypes.func,
+    handlePriceFilter: PropTypes.func,
+    handleRatingFilter: PropTypes.func,
+    handleFilterReset: PropTypes.func,
 }
 
-export default Filters
+export default Filters;
