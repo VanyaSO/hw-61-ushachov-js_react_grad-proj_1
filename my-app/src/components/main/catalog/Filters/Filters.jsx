@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import {memo, useCallback} from "react";
+import Typography from "@mui/material/Typography";
+import Accordion from "./Accordion"
 
 const Filters = memo((props) => {
 
@@ -61,83 +63,88 @@ const Filters = memo((props) => {
         handleFilterReset();
     },[])
 
-
     return(
         <div className="catalog-filters">
             <div>
-                <h4 className='filters-title'>{`${filterProductsLeng}/${productsLeng}`}</h4>
-                <h3 className='filters-title'>Filters</h3>
-                <div className="filter-price">
-                        <span>Price from
+                <h4 className='filters-title'>{`${filterProductsLeng} / ${productsLeng}`}</h4>
+                {/*<h3 className='filters-title'>Filters</h3>*/}
+                <FormControlLabel
+                    label="Availability"
+                    control={<Switch checked={isInStockFilter} onChange={onChangeIsInStock}/>}
+                    className= {!isInStockFilter ? "filter-IsInStock" : "filter-IsInStock switch-active" }
+                />
+
+                <FormControlLabel
+                    label="New"
+                    control={<Switch checked={isNewFilter} onChange={onChangeIsNew}/>}
+                    className={!isNewFilter ? "filter-IsNew" : "filter-IsNew switch-active" }
+                />
+
+                <FormControlLabel
+                    label="Sale"
+                    control={<Switch checked={isSaleFilter} onChange={onChangeIsSale}/>}
+                    className={!isSaleFilter ? "filter-IsSale" : "filter-IsSale switch-active" }
+                />
+
+
+                <Accordion title={"Price"}>
+                    <div className="filter-price">
+                        <span>
                             <input
                                 onChange={onChangePriceMin}
-                                placeholder="from"
+                                placeholder="MIN"
                                 value={priceFilterMin}
                                 min={0}
                                 max={priceFilterMax - 1}
                             />
                         </span>
-                    <span>to
+                        <span>
+                            to
+                        </span>
+                        <span>
                             <input
                                 onChange={onChangePriceMax}
-                                placeholder="to"
+                                placeholder="MAX"
                                 value={priceFilterMax}
                                 min={priceFilterMin + 1}
                             />
                         </span>
-                </div>
+                    </div>
+                </Accordion>
 
-                <label className="filter-IsNew" htmlFor="isNew">
-                    <input type="checkbox"
-                           checked={isNewFilter}
-                           onChange={onChangeIsNew}
-                    />
-                    <span>New</span>
-                </label>
+                <Accordion title={"Rating"}>
+                    <div className="filter-rating">
+                        <span>
+                            <input onChange={onChangeRatingMin}
+                                   placeholder="MIN"
+                                   value={ratingFilterMin}
+                                   min={0}
+                                   max={ratingFilterMax - 1}
+                            />
+                        </span>
+                        <span>to</span>
+                        <span>
+                            <input onChange={onChangeRatingMax}
+                                   placeholder="MAX"
+                                   value={ratingFilterMax}
+                                   min={ratingFilterMin + 1}
+                            />
+                        </span>
+                    </div>
+                </Accordion>
 
-                <label className="filter-IsSale" htmlFor="isSale">
-                    <input type="checkbox"
-                           checked={isSaleFilter}
-                           onChange={onChangeIsSale}
-                    />
-                    <span>Sale</span>
-                </label>
+                <Accordion title={"Category"}>
+                    <div className="filters-category">
+                        <div onClick={filterCategoriesHandle} className={'' === selectCategory ? 'category categoryActive' : 'category'} >All</div>
 
-                <FormControlLabel
-                    control={<Switch checked={isInStockFilter} onChange={onChangeIsInStock}/>}
-                    className="filter-IsInStock"
-                    label="Наличие"
-                />
-
-                <div className="filter-rating">
-                    <span>Rating from:
-                        <input onChange={onChangeRatingMin}
-                               placeholder="from"
-                               value={ratingFilterMin}
-                               min={0}
-                               max={ratingFilterMax - 1}
-                        />
-                    </span>
-                    <span>to:
-                        <input onChange={onChangeRatingMax}
-                               placeholder="to"
-                               value={ratingFilterMax}
-                               min={ratingFilterMin + 1}
-                        />
-                    </span>
-                </div>
-
-                <h3 className='filters-title'>Categories</h3>
-                <div className="filters-category">
-                    <div onClick={filterCategoriesHandle} className={'' === selectCategory ? 'category categoryActive' : 'category'} >All</div>
-
-                    {categories.map((category) =>(
-                        <div onClick={filterCategoriesHandle} id={category.id} key={category.id} className={category.id === selectCategory ? 'category categoryActive' : 'category '}>{category.name}</div>
-                    ))}
-                </div>
+                        {categories.map((category) =>(
+                            <div onClick={filterCategoriesHandle} id={category.id} key={category.id} className={category.id === selectCategory ? 'category categoryActive' : 'category '}>{category.name}</div>
+                        ))}
+                    </div>
+                </Accordion>
 
                 <div className="filter-reset" onClick={filterResetHandle}>
-                    RESET
+                    <img src="./image/reset-btn.png" alt=""/>
                 </div>
             </div>
 

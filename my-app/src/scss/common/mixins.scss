@@ -1,8 +1,8 @@
-@mixin flag-prod-mix($bg, $color){
-  background: $bg;
-  color: $color;
-  @extend %flag-prod-ext;
-}
+//@mixin flag-prod-mix($bg, $color){
+//  background: $bg;
+//  color: $color;
+//  @extend %flag-prod-ext;
+//}
 
 @mixin defolt-block-mix($bg, $padding, $color){
   background: $bg;

@@ -5,12 +5,15 @@
 }
  html, body{
    overflow-x:hidden;
+   background: $darkBlack;
  }
 .container{
   max-width: $content-width;
   margin: 0 auto;
 }
-
+input{
+  background: $dopSomeDark;
+}
 @media (min-width: 600px){
  .css-hyum1k-MuiToolbar-root {
    padding-left: 0 !important;

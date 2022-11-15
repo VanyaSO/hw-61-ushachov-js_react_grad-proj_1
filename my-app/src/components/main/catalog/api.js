@@ -3,7 +3,7 @@ const delay = ms =>{
 }
 
 export async function fetchProducts() {
-    await delay(2000);
+    await delay(1000);
     const response = await fetch('https://61f5558a62f1e300173c40f3.mockapi.io/products')
     const status =  response.status
 

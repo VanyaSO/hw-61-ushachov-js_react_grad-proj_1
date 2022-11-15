@@ -5,44 +5,55 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import {styled} from "@mui/material/styles";
 
 const MediaCard = memo(({product}) => {
     const { isInStock, isNew, isSale, photo, id, title, description, price, rating} = product;
-
     return(
         <Card className={isInStock ? 'card-product' : 'card-product no-Stock'}>
             <CardMedia
+                className="product-img"
                 component="img"
                 height="240"
                 image={`${photo}?v=${id}`}
                 alt="green iguana"
             />
-            <CardContent>
+            <CardContent className='product-text-content'>
                 <div className="product-flag">
                     {isNew && (
-                        <p className="product-new">New</p>
+                        <div className="product-flag-bg">
+                            <p className="product-new">New</p>
+                        </div>
+
                     )}
                     {isSale && (
-                        <p className="product-sale">Sale</p>
+                        <div className="product-flag-bg">
+                            <p className="product-sale">Sale</p>
+                        </div>
+
                     )}
                 </div>
 
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography className="product-title" gutterBottom variant="h5" component="div">
                     {title}
                 </Typography>
 
-                <Typography variant="body2" color="text.secondary">
-                    {description}
-                </Typography>
+                {/*<Typography variant="body2" color="text.secondary">*/}
+                {/*    {description}*/}
+                {/*</Typography>*/}
 
-                <p className="product-price">${price}</p>
+                <div className="product-info">
+                    <div>
+                        <h3>Prise</h3>
+                        {isInStock ? <p className="product-price">{price} $</p> : <p className="product-price">Not for sale</p>}
 
-                <p className="product-rating">{`Рейтинг : ${rating}`}</p>
+                    </div>
+                    <div>
+                        <h3>Rating</h3>
+                        <p className="product-rating">{`${rating}`}</p>
+                    </div>
+                </div>
 
-
-                {!isInStock && (
-                    <p className="product-noStock">Не в наличии</p>
-                )}
 
             </CardContent>
         </Card>

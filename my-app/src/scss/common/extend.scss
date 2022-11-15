@@ -1,10 +1,16 @@
 
-
 %flag-prod-ext{
-  padding: 14px 10px;
-  margin-bottom: 5px;
-  font-size: 14px;
-  border-radius: 50%;
+  font-family: 'Rubik One', sans-serif;
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: radial-gradient(100% 283.68% at 100% 0%, rgb(252, 201, 20) 0%, rgb(254, 111, 55) 47.95%, rgb(198, 106, 221) 75.34%, rgb(154, 116, 241) 100%);;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #0B2349;
+  display: table;
+  padding: 5px 7px;
 }
 
 %defolt-block-ext{

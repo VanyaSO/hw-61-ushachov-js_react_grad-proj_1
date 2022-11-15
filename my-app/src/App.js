@@ -1,5 +1,5 @@
 import React from "react"
-import Header from "./components/header/Header"
+import Header from "./components/main/catalog/Filters/Header"
 import Banner from "./components/main/Banner"
 import Catalog from "./components/main/catalog/Catalog"
 
@@ -11,7 +11,7 @@ function App(){
         </header>
 
         <main>
-            <Banner src={`./image/banner.jpeg`}/>
+            {/*<Banner src={`./image/banner.jpeg`}/>*/}
             <Catalog className="catalog"/>
         </main>
         </div>

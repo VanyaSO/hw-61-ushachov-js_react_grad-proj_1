@@ -2,7 +2,7 @@ import React, {useState, useEffect, useCallback, useMemo, memo} from "react";
 import Item from "./ProductCard";
 import { queryState } from "./query-state";
 import { fetchProducts, fetchCategories } from "./api"
-import SearchApp from "./Filters/Search";
+import SearchApp from "../../header/Search";
 import Filters from "./Filters/Filters"
 import CircularIndeterminate from "./Loading";
 
@@ -139,30 +139,34 @@ const Catalog = memo(() => {
                     />
 
                     <div className="catalog-filters-product">
-                        <Filters
-                            filterProductsLeng={filterProducts.length}
-                            productsLeng={products.length}
-                            selectCategory = {selectCategory}
-                            categories = {categories}
-                            isNewFilter = {isNewFilter}
-                            isInStockFilter = {isInStockFilter}
-                            isSaleFilter = {isSaleFilter}
-                            priceFilterMin = {priceFilterMin}
-                            priceFilterMax = {priceFilterMax}
-                            ratingFilterMin = {ratingFilterMin}
-                            ratingFilterMax = {ratingFilterMax}
 
-                            handleChangeFilterCategory = {handleChangeFilterCategories}
-                            handleChangeIsNewFilter = {handleChangeIsNewFilter}
-                            handleChangeIsInStockFilter = {handleChangeIsInStockFilter}
-                            handleChangeIsSaleFilter = {handleChangeIsSaleFilter}
-                            handlePriceFilter = {handlePriceFilter}
-                            handleRatingFilter = {handleRatingFilter}
-                            handleFilterReset = {handleFilterReset}
-                        />
 
                         {isLoading && (
                             <CircularIndeterminate/>
+                        )}
+
+                        {!isLoading && isSuccess && (
+                            <Filters
+                                filterProductsLeng={filterProducts.length}
+                                productsLeng={products.length}
+                                selectCategory = {selectCategory}
+                                categories = {categories}
+                                isNewFilter = {isNewFilter}
+                                isInStockFilter = {isInStockFilter}
+                                isSaleFilter = {isSaleFilter}
+                                priceFilterMin = {priceFilterMin}
+                                priceFilterMax = {priceFilterMax}
+                                ratingFilterMin = {ratingFilterMin}
+                                ratingFilterMax = {ratingFilterMax}
+
+                                handleChangeFilterCategory = {handleChangeFilterCategories}
+                                handleChangeIsNewFilter = {handleChangeIsNewFilter}
+                                handleChangeIsInStockFilter = {handleChangeIsInStockFilter}
+                                handleChangeIsSaleFilter = {handleChangeIsSaleFilter}
+                                handlePriceFilter = {handlePriceFilter}
+                                handleRatingFilter = {handleRatingFilter}
+                                handleFilterReset = {handleFilterReset}
+                            />
                         )}
 
                         {!isLoading && isSuccess && (
